@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Curso Carnet B DGT</title>
+    <title>Curso Intensivo Carnet B DGT</title>
 
     <style>
         :root {
@@ -16,6 +16,7 @@
             --primary: #38bdf8;
             --success: #22c55e;
             --warning: #fbbf24;
+            --danger: #ef4444;
         }
 
         * {
@@ -33,7 +34,7 @@
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: auto;
         }
 
@@ -50,14 +51,13 @@
 
         .subtitle {
             color: #cbd5e1;
-            font-size: 1.1rem;
         }
 
         .dashboard {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
-            margin: 30px 0;
+            margin-bottom: 30px;
         }
 
         .stat {
@@ -65,7 +65,6 @@
             padding: 25px;
             border-radius: 20px;
             text-align: center;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, .3);
         }
 
         .stat h3 {
@@ -86,7 +85,6 @@
         }
 
         .progress {
-            width: 100%;
             height: 30px;
             background: #334155;
             border-radius: 50px;
@@ -103,18 +101,18 @@
 
         .modules {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 20px;
         }
 
         .module {
+            display: block;
+            text-decoration: none;
+            color: white;
             background: var(--card);
             padding: 25px;
             border-radius: 20px;
-            text-decoration: none;
-            color: white;
             transition: .3s;
-            display: block;
             border: 2px solid transparent;
         }
 
@@ -128,7 +126,7 @@
         }
 
         .day1 {
-            border-left: 8px solid #22c55e;
+            border-left: 8px solid #10b981;
         }
 
         .day2 {
@@ -143,39 +141,51 @@
             border-left: 8px solid #ef4444;
         }
 
+        .day5 {
+            border-left: 8px solid #8b5cf6;
+        }
+
+        .day6 {
+            border-left: 8px solid #14b8a6;
+        }
+
+        .day7 {
+            border-left: 8px solid #eab308;
+        }
+
         .badge {
             display: inline-block;
             padding: 8px 14px;
-            background: var(--success);
             border-radius: 20px;
-            margin-top: 10px;
             font-size: .9rem;
             font-weight: bold;
-        }
-
-        .locked {
-            opacity: .6;
-        }
-
-        footer {
-            margin-top: 40px;
-            text-align: center;
-            color: #94a3b8;
+            background: #64748b;
+            margin-top: 15px;
         }
 
         button {
-            margin-top: 15px;
-            background: #ef4444;
+            background: var(--danger);
+            color: white;
             border: none;
             padding: 12px 20px;
             border-radius: 12px;
-            color: white;
-            font-weight: bold;
             cursor: pointer;
+            margin-top: 15px;
+            font-weight: bold;
         }
 
         button:hover {
             opacity: .9;
+        }
+
+        #certificadoFinal {
+            margin-top: 30px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #94a3b8;
         }
     </style>
 </head>
@@ -186,10 +196,10 @@
 
         <header>
 
-            <h1>🚗 CURSO INTENSIVO CARNET B</h1>
+            <h1>🚗 CURSO COMPLETO CARNET B</h1>
 
             <p class="subtitle">
-                Preparación para el examen teórico DGT
+                Preparación Teórica DGT • 7 Días de Entrenamiento
             </p>
 
         </header>
@@ -197,17 +207,17 @@
         <div class="dashboard">
 
             <div class="stat">
-                <h3>🏆 XP Total</h3>
+                <h3>🏆 XP TOTAL</h3>
                 <div id="xpTotal" class="stat-value">0</div>
             </div>
 
             <div class="stat">
-                <h3>✅ Días Completados</h3>
+                <h3>✅ PROGRESO</h3>
                 <div id="diasCompletados" class="stat-value">0/7</div>
             </div>
 
             <div class="stat">
-                <h3>🎖 Nivel</h3>
+                <h3>🎖 NIVEL</h3>
                 <div id="nivel" class="stat-value">
                     Aprendiz
                 </div>
@@ -217,10 +227,10 @@
 
         <div class="progress-card">
 
-            <h2>📊 Progreso General del Curso</h2>
+            <h2>📊 Progreso General</h2>
 
             <div class="progress">
-                <div id="barraCurso" class="progress-bar"></div>
+                <div class="progress-bar" id="barraCurso"></div>
             </div>
 
             <p id="porcentajeCurso" style="margin-top:10px;">
@@ -228,7 +238,7 @@
             </p>
 
             <button onclick="reiniciarCurso()">
-                🗑 Reiniciar Progreso
+                🗑 Reiniciar Curso
             </button>
 
         </div>
@@ -242,8 +252,8 @@
                 <h3>Prioridad de Paso</h3>
 
                 <p>
-                    STOP, CEDA EL PASO, rotondas,
-                    peatones y vehículos prioritarios.
+                    STOP, CEDA, rotondas,
+                    peatones y prioridades.
                 </p>
 
                 <div id="estado1"></div>
@@ -257,8 +267,8 @@
                 <h3>Señales de Tráfico</h3>
 
                 <p>
-                    Peligro, prohibición,
-                    obligación e indicación.
+                    Señales de peligro,
+                    prohibición, obligación e indicación.
                 </p>
 
                 <div id="estado2"></div>
@@ -273,7 +283,7 @@
 
                 <p>
                     Distancias de seguridad,
-                    reacción y adelantamiento.
+                    frenado y adelantamientos.
                 </p>
 
                 <div id="estado3"></div>
@@ -288,54 +298,65 @@
 
                 <p>
                     Alcohol, drogas,
-                    medicamentos y fatiga.
+                    fatiga y uso del móvil.
                 </p>
 
                 <div id="estado4"></div>
 
             </a>
 
-            <div class="module locked">
+            <a href="dia5.html" class="module day5">
 
                 <h2>💡 Día 5</h2>
 
                 <h3>Luces y Documentación</h3>
 
                 <p>
-                    Próximamente
+                    Alumbrado, ITV,
+                    seguro y mecánica básica.
                 </p>
 
-            </div>
+                <div id="estado5"></div>
 
-            <div class="module locked">
+            </a>
+
+            <a href="dia6.html" class="module day6">
 
                 <h2>🚑 Día 6</h2>
 
                 <h3>Emergencias y PAS</h3>
 
                 <p>
-                    Próximamente
+                    Paradas, accidentes,
+                    PAS y primeros auxilios.
                 </p>
 
-            </div>
+                <div id="estado6"></div>
 
-            <div class="module locked">
+            </a>
 
-                <h2>📝 Día 7</h2>
+            <a href="dia7.html" class="module day7">
+
+                <h2>🏆 Día 7</h2>
 
                 <h3>Simulacro Final DGT</h3>
 
                 <p>
-                    Próximamente
+                    Examen completo,
+                    cronómetro y certificado.
                 </p>
 
-            </div>
+                <div id="estado7"></div>
+
+            </a>
 
         </div>
 
+        <div id="certificadoFinal"></div>
+
         <footer>
 
-            Curso Carnet B DGT © 2026
+            Curso Completo Carnet B DGT
 
         </footer>
 
@@ -347,10 +368,13 @@
 
             let xp = 0;
 
-            xp += Number(localStorage.getItem("dia1_xp")) || 0;
-            xp += Number(localStorage.getItem("dia2_xp")) || 0;
-            xp += Number(localStorage.getItem("dia3_xp")) || 0;
-            xp += Number(localStorage.getItem("dia4_xp")) || 0;
+            for (let i = 1; i <= 7; i++) {
+
+                xp += Number(
+                    localStorage.getItem("dia" + i + "_xp")
+                ) || 0;
+
+            }
 
             return xp;
 
@@ -358,15 +382,15 @@
 
         function obtenerNivel(xp) {
 
-            if (xp < 300) {
+            if (xp < 500) {
                 return "🚗 Aprendiz";
             }
 
-            if (xp < 800) {
+            if (xp < 1200) {
                 return "🚦 Conductor";
             }
 
-            if (xp < 1500) {
+            if (xp < 2500) {
                 return "🏆 Experto";
             }
 
@@ -378,49 +402,118 @@
 
             let completados = 0;
 
-            for (let i = 1; i <= 4; i++) {
+            for (let i = 1; i <= 7; i++) {
 
                 const completado =
-                    localStorage.getItem("dia" + i + "_completado");
+                    localStorage.getItem(
+                        "dia" + i + "_completado"
+                    );
+
+                const estado =
+                    document.getElementById(
+                        "estado" + i
+                    );
+
+                if (!estado) continue;
 
                 if (completado) {
 
                     completados++;
 
-                    document.getElementById("estado" + i).innerHTML =
-                        '<span class="badge">✅ Completado</span>';
+                    estado.innerHTML =
+                        '<span class="badge" style="background:#22c55e;">✅ Completado</span>';
 
                 } else {
 
-                    document.getElementById("estado" + i).innerHTML =
-                        '<span class="badge" style="background:#64748b;">Pendiente</span>';
+                    estado.innerHTML =
+                        '<span class="badge">Pendiente</span>';
 
                 }
 
             }
 
             const porcentaje =
-                Math.round((completados / 7) * 100);
+                Math.round(
+                    (completados / 7) * 100
+                );
 
-            document.getElementById("diasCompletados")
-                .innerText =
+            document.getElementById(
+                "diasCompletados"
+            ).innerText =
                 completados + "/7";
 
-            document.getElementById("barraCurso")
-                .style.width =
+            document.getElementById(
+                "barraCurso"
+            ).style.width =
                 porcentaje + "%";
 
-            document.getElementById("porcentajeCurso")
-                .innerText =
+            document.getElementById(
+                "porcentajeCurso"
+            ).innerText =
                 porcentaje + "% completado";
+
+            if (completados === 7) {
+
+                mostrarCertificadoFinal();
+
+            }
+
+        }
+
+        function mostrarCertificadoFinal() {
+
+            const xp = obtenerXP();
+
+            const nivel = obtenerNivel(xp);
+
+            document.getElementById(
+                "certificadoFinal"
+            ).innerHTML =
+
+                `<div style="
+background:#14532d;
+padding:30px;
+border-radius:20px;
+text-align:center;
+">
+
+<h2>🎓 CURSO COMPLETADO</h2>
+
+<br>
+
+<p>
+✅ Has completado los 7 módulos.
+</p>
+
+<br>
+
+<h3>🏆 XP Total: ${xp}</h3>
+
+<br>
+
+<h3>${nivel}</h3>
+
+<br>
+
+<p>
+Preparado para presentarte a simulacros DGT.
+</p>
+
+</div>`;
 
         }
 
         function reiniciarCurso() {
 
-            if (confirm("¿Seguro que deseas borrar todo el progreso?")) {
+            if (confirm("¿Borrar todo el progreso del curso?")) {
 
-                localStorage.clear();
+                for (let i = 1; i <= 7; i++) {
+
+                    localStorage.removeItem("dia" + i + "_xp");
+                    localStorage.removeItem("dia" + i + "_aciertos");
+                    localStorage.removeItem("dia" + i + "_completado");
+
+                }
 
                 location.reload();
 
@@ -430,11 +523,14 @@
 
         const xp = obtenerXP();
 
-        document.getElementById("xpTotal")
-            .innerText = xp;
+        document.getElementById(
+            "xpTotal"
+        ).innerText = xp;
 
-        document.getElementById("nivel")
-            .innerText = obtenerNivel(xp);
+        document.getElementById(
+            "nivel"
+        ).innerText =
+            obtenerNivel(xp);
 
         actualizarEstado();
 
