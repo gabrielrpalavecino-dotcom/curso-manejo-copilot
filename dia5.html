@@ -173,11 +173,51 @@
             color: #cbd5e1;
         }
     </style>
+    .topbar{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-bottom:20px;
+    }
 
+    .btnInicio,
+    .btnNav{
+
+    background:#334155;
+    color:white;
+    text-decoration:none;
+    padding:10px 15px;
+    border-radius:10px;
+    transition:.3s;
+
+    }
+
+    .btnInicio{
+    background:#22c55e;
+    }
+
+    .btnInicio:hover,
+    .btnNav:hover{
+    opacity:.9;
+    transform:translateY(-2px);
+    }
 </head>
 
 <body>
+    <div class="topbar">
 
+        <a href="./index.html" class="btnInicio">
+            🏠 Inicio
+        </a>
+
+        <a href="./dia1.html" class="btnNav">Día 1</a>
+        <a href="./dia2.html" class="btnNav">Día 2</a>
+        <a href="./dia3.html" class="btnNav">Día 3</a>
+        <a href="./dia4.html" class="btnNav">Día 4</a>
+        <a href="./dia6.html" class="btnNav">Día 6</a>
+        <a href="./dia7.html" class="btnNav">🏆 Final</a>
+
+    </div>
     <div class="container">
 
         <header>
