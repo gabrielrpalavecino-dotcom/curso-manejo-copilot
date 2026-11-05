@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curso Carnet B - Día 1 | Prioridad de Paso</title>
+
+    <style>
+        :root {
+            --bg: #0f172a;
+            --card: #1e293b;
+            --card2: #334155;
+            --primary: #38bdf8;
+            --success: #22c55e;
+            --danger: #ef4444;
+            --warning: #fbbf24;
+            --text: #f8fafc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Segoe UI, Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        h1 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #cbd5e1;
+        }
+
+        .progress-container {
+            margin: 20px 0;
+        }
+
+        .progress {
+            width: 100%;
+            height: 25px;
+            background: #1e293b;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #22c55e, #3b82f6);
+            transition: 0.4s;
+        }
+
+        .card {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, .2);
+        }
+
+        .card h2 {
+            color: var(--warning);
+            margin-bottom: 15px;
+        }
+
+        .theory-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .rule {
+            background: var(--card2);
+            padding: 15px;
+            border-radius: 15px;
+        }
+
+        .rule h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .flashcards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .flashcard {
+            height: 180px;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+
+        .inner {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transition: 0.6s;
+            transform-style: preserve-3d;
+        }
+
+        .flashcard.flip .inner {
+            transform: rotateY(180deg);
+        }
+
+        .front,
+        .back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 15px;
+            backface-visibility: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 15px;
+        }
+
+        .front {
+            background: #2563eb;
+        }
+
+        .back {
+            background: #16a34a;
+            transform: rotateY(180deg);
+        }
+
+        .question {
+            background: var(--card2);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+
+        .question p {
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .option {
+            display: block;
+            background: #475569;
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .option:hover {
+            background: #64748b;
+        }
+
+        button {
+            border: none;
+            background: var(--success);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            opacity: .9;
+        }
+
+        .resultado {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 15px;
+            display: none;
+        }
+
+        .correct {
+            background: #14532d;
+        }
+
+        .error {
+            background: #7f1d1d;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .stat {
+            background: #334155;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .stat h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #f59e0b;
+            color: black;
+            padding: 8px 15px;
+            border-radius: 20px;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #94a3b8;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <header>
+
+            <h1>🚗 CURSO CARNET B - DÍA 1</h1>
+
+            <p class="subtitle">
+                Prioridad de paso, cruces y rotondas
+            </p>
+
+            <div class="progress-container">
+
+                <div class="progress">
+                    <div id="barra" class="progress-bar"></div>
+                </div>
+
+                <p id="porcentaje">0% completado</p>
+
+            </div>
+
+        </header>
+
+        <div class="card">
+
+            <h2>📚 Teoría Fundamental</h2>
+
+            <div class="theory-grid">
+
+                <div class="rule">
+                    <h3>🛑 STOP</h3>
+                    <p>Obliga a detener completamente el vehículo aunque no venga nadie.</p>
+                </div>
+
+                <div class="rule">
+                    <h3>⚠️ CEDA EL PASO</h3>
+                    <p>Solo debes detenerte si otro usuario tiene prioridad.</p>
+                </div>
+
+                <div class="rule">
+                    <h3>➡️ DERECHA</h3>
+                    <p>Sin señales, tiene prioridad quien viene por tu derecha.</p>
+                </div>
+
+                <div class="rule">
+                    <h3>⭕ ROTONDAS</h3>
+                    <p>Tienen prioridad los vehículos que ya circulan dentro.</p>
+                </div>
+
+                <div class="rule">
+                    <h3>🚶 PEATONES</h3>
+                    <p>Los peatones tienen prioridad en pasos de peatones.</p>
+                </div>
+
+                <div class="rule">
+                    <h3>🚑 EMERGENCIAS</h3>
+                    <p>Ambulancias, Policía y Bomberos tienen prioridad cuando actúan en servicio urgente.</p>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <h2>🧠 Flashcards</h2>
+
+            <div class="flashcards">
+
+                <div class="flashcard" onclick="flip(this)">
+                    <div class="inner">
+                        <div class="front">¿STOP?</div>
+                        <div class="back">Detención obligatoria</div>
+                    </div>
+                </div>
+
+                <div class="flashcard" onclick="flip(this)">
+                    <div class="inner">
+                        <div class="front">¿CEDA?</div>
+                        <div class="back">Paso si no molestas a nadie</div>
+                    </div>
+                </div>
+
+                <div class="flashcard" onclick="flip(this)">
+                    <div class="inner">
+                        <div class="front">¿Sin señales?</div>
+                        <div class="back">Prioridad derecha</div>
+                    </div>
+                </div>
+
+                <div class="flashcard" onclick="flip(this)">
+                    <div class="inner">
+                        <div class="front">¿Rotonda?</div>
+                        <div class="back">Mandan los que están dentro</div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <h2>✅ Examen Día 1</h2>
+
+            <form id="quiz">
+
+                <div class="question">
+                    <p>1. En un cruce sin señalización, ¿quién tiene prioridad?</p>
+
+                    <label class="option"><input type="radio" name="q1" value="0"> El vehículo más rápido</label>
+                    <label class="option"><input type="radio" name="q1" value="1"> El vehículo que viene por la
+                        derecha</label>
+                    <label class="option"><input type="radio" name="q1" value="0"> El vehículo más grande</label>
+
+                </div>
+
+                <div class="question">
+                    <p>2. Una señal STOP obliga a:</p>
+
+                    <label class="option"><input type="radio" name="q2" value="1"> Detenerse completamente</label>
+                    <label class="option"><input type="radio" name="q2" value="0"> Reducir velocidad</label>
+                    <label class="option"><input type="radio" name="q2" value="0"> Mirar y continuar</label>
+
+                </div>
+
+                <div class="question">
+                    <p>3. En una glorieta tiene prioridad:</p>
+
+                    <label class="option"><input type="radio" name="q3" value="1"> Quien circula dentro</label>
+                    <label class="option"><input type="radio" name="q3" value="0"> Quien entra</label>
+                    <label class="option"><input type="radio" name="q3" value="0"> El más rápido</label>
+
+                </div>
+
+                <div class="question">
+                    <p>4. Saliendo de una gasolinera:</p>
+
+                    <label class="option"><input type="radio" name="q4" value="0"> Tienes prioridad</label>
+                    <label class="option"><input type="radio" name="q4" value="1"> Debes ceder el paso</label>
+                    <label class="option"><input type="radio" name="q4" value="0"> Depende de la carretera</label>
+
+                </div>
+
+                <div class="question">
+                    <p>5. Un peatón cruza correctamente por un paso de peatones.</p>
+
+                    <label class="option"><input type="radio" name="q5" value="1"> Tiene prioridad</label>
+                    <label class="option"><input type="radio" name="q5" value="0"> Debe esperar</label>
+                    <label class="option"><input type="radio" name="q5" value="0"> Decide el conductor</label>
+
+                </div>
+
+                <div class="question">
+                    <p>6. Una ambulancia con sirena y luces activadas:</p>
+
+                    <label class="option"><input type="radio" name="q6" value="1"> Tiene prioridad</label>
+                    <label class="option"><input type="radio" name="q6" value="0"> No tiene prioridad</label>
+                    <label class="option"><input type="radio" name="q6" value="0"> Solo en ciudad</label>
+
+                </div>
+
+                <button type="button" onclick="corregir()">
+                    Corregir Examen
+                </button>
+
+            </form>
+
+            <div id="resultado" class="resultado"></div>
+
+        </div>
+
+        <div class="card">
+
+            <h2>🏆 Estadísticas</h2>
+
+            <div class="stats">
+
+                <div class="stat">
+                    <h3>XP</h3>
+                    <p id="xp">0</p>
+                </div>
+
+                <div class="stat">
+                    <h3>Nota</h3>
+                    <p id="nota">0/6</p>
+                </div>
+
+                <div class="stat">
+                    <h3>Estado</h3>
+                    <p id="estado">Pendiente</p>
+                </div>
+
+            </div>
+
+            <div id="medalla"></div>
+
+        </div>
+
+        <footer>
+
+            Curso Intensivo Teórico DGT · Día 1
+
+        </footer>
+
+    </div>
+
+    <script>
+
+        function flip(card) {
+            card.classList.toggle("flip");
+            actualizarProgreso(10);
+        }
+
+        function actualizarProgreso(valor) {
+
+            let actual = parseInt(localStorage.getItem("dia1_progress")) || 0;
+
+            actual += valor;
+
+            if (actual > 100) {
+                actual = 100;
+            }
+
+            localStorage.setItem("dia1_progress", actual);
+
+            document.getElementById("barra").style.width = actual + "%";
+            document.getElementById("porcentaje").innerText =
+                actual + "% completado";
+        }
+
+        function cargar() {
+
+            let progreso = parseInt(localStorage.getItem("dia1_progress")) || 0;
+
+            document.getElementById("barra").style.width =
+                progreso + "%";
+
+            document.getElementById("porcentaje").innerText =
+                progreso + "% completado";
+
+            let xp = localStorage.getItem("dia1_xp") || 0;
+
+            document.getElementById("xp").innerText = xp;
+        }
+
+        function corregir() {
+
+            let total = 0;
+
+            for (let i = 1; i <= 6; i++) {
+
+                let r = document.querySelector(
+                    'input[name="q' + i + '"]:checked'
+                );
+
+                if (r) {
+                    total += parseInt(r.value);
+                }
+
+            }
+
+            let porcentaje = Math.round((total / 6) * 100);
+
+            let xp = total * 50;
+
+            document.getElementById("nota").innerText =
+                total + "/6";
+
+            document.getElementById("xp").innerText =
+                xp;
+
+            localStorage.setItem("dia1_xp", xp);
+
+            let resultado =
+                document.getElementById("resultado");
+
+            resultado.style.display = "block";
+
+            if (total >= 5) {
+
+                resultado.className = "resultado correct";
+
+                resultado.innerHTML =
+                    "<h3>✅ APTO</h3><p>Excelente trabajo.</p>";
+
+                document.getElementById("estado").innerText =
+                    "Aprobado";
+
+                document.getElementById("medalla").innerHTML =
+                    '<div class="badge">🥇 Maestro de Prioridades</div>';
+
+                localStorage.setItem("dia1_completado", "true");
+
+            } else {
+
+                resultado.className = "resultado error";
+
+                resultado.innerHTML =
+                    "<h3>❌ REPASAR</h3><p>Necesitas practicar más.</p>";
+
+                document.getElementById("estado").innerText =
+                    "Repasar";
+
+            }
+
+            actualizarProgreso(40);
+
+        }
+
+        cargar();
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Día 5 - Luces, Documentación y Mecánica | Curso Carnet B</title>
+
+    <style>
+        :root {
+            --bg: #0f172a;
+            --card: #1e293b;
+            --card2: #334155;
+            --text: #f8fafc;
+            --primary: #38bdf8;
+            --success: #22c55e;
+            --danger: #ef4444;
+            --warning: #fbbf24;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Segoe UI, sans-serif;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #cbd5e1;
+        }
+
+        .progress {
+            height: 25px;
+            background: #1e293b;
+            border-radius: 20px;
+            overflow: hidden;
+            margin-top: 20px;
+        }
+
+        .progress-bar {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #22c55e, #3b82f6);
+            transition: .5s;
+        }
+
+        .card {
+            background: var(--card);
+            padding: 25px;
+            border-radius: 20px;
+            margin-bottom: 25px;
+        }
+
+        .card h2 {
+            color: var(--warning);
+            margin-bottom: 15px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .rule {
+            background: var(--card2);
+            padding: 15px;
+            border-radius: 15px;
+        }
+
+        .rule h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .flashcards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .flashcard {
+            height: 180px;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+
+        .inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: .7s;
+            transform-style: preserve-3d;
+        }
+
+        .flashcard.flip .inner {
+            transform: rotateY(180deg);
+        }
+
+        .front,
+        .back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+            text-align: center;
+            border-radius: 15px;
+            backface-visibility: hidden;
+        }
+
+        .front {
+            background: #2563eb;
+        }
+
+        .back {
+            background: #16a34a;
+            transform: rotateY(180deg);
+        }
+
+        .question {
+            background: var(--card2);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+
+        .question h3 {
+            margin-bottom: 12px;
+        }
+
+        .option {
+            display: block;
+            background: #475569;
+            padding: 12px;
+            margin-top: 8px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .option:hover {
+            background: #64748b;
+        }
+
+        small {
+            display: block;
+            margin-top: 10px;
+            color: #cbd5e1;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <header>
+
+            <h1>💡 CURSO CARNET B - DÍA 5</h1>
+
+            <p class="subtitle">
+                Luces · Documentación · Mecánica Básica
+            </p>
+
+            <div class="progress">
+                <div class="progress-bar" id="barra"></div>
+            </div>
+
+            <p id="progresoTexto">0% completado</p>
+
+        </header>
+
+        <section class="card">
+
+            <h2>📚 Resumen Teórico</h2>
+
+            <div class="grid">
+
+                <div class="rule">
+                    <h3>💡 Luces de Posición</h3>
+                    <p>
+                        Permiten que el vehículo sea visto. No iluminan la carretera.
+                    </p>
+                </div>
+
+                <div class="rule">
+                    <h3>🌙 Luces de Cruce</h3>
+                    <p>
+                        Son las más utilizadas. Se emplean de noche y con visibilidad reducida.
+                    </p>
+                </div>
+
+                <div class="rule">
+                    <h3>🔦 Luces de Carretera</h3>
+                    <p>
+                        Iluminan a mayor distancia, pero no deben deslumbrar a otros usuarios.
+                    </p>
+                </div>
+
+                <div class="rule">
+                    <h3>🌫 Antiniebla Delantera</h3>
+                    <p>
+                        Mejora la iluminación en condiciones de niebla, lluvia intensa o nieve.
+                    </p>
+                </div>
+
+                <div class="rule">
+                    <h3>🚨 Antiniebla Trasera</h3>
+                    <p>
+                        Solo debe utilizarse con visibilidad muy reducida.
+                    </p>
+                </div>
+
+                <div class="rule">
+                    <h3>⚠️ Deslumbramiento</h3>
+                    <p>
+                        Debe evitarse cambiando de luces largas a cortas cuando sea necesario.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+        <section class="card">
+
+            <h2>🧠 Flashcards</h2>
+
+            <div class="flashcards">
+
+                <div class="flashcard" onclick="flip(this)">
+                    <div class="inner">
+                        <div class="front">
+                            ¿Qué luces se usan normalmente de noche?
+                        </div>
+                        <div class="back">
+                            Las luces de cruce.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flashcard" onclick="flip(this)">
+                    <div class="inner">
+                        <div class="front">
+                            ¿Las luces de posición iluminan la carretera?
+                        </div>
+                        <div class="back">
+                            No, solo indican presencia.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flashcard" onclick="flip(this)">
+                    <div class="inner">
+                        <div class="front">
+                            ¿Cuándo usar antiniebla trasera?
+                        </div>
+                        <div class="back">
+                            Solo con visibilidad muy reducida.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flashcard" onclick="flip(this)">
+                    <div class="inner">
+                        <div class="front">
+                            ¿Qué debe evitar una luz larga?
+                        </div>
+                        <div class="back">
+                            Deslumbrar a otros conductores.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+        <section class="card">
+
+            <h2>✅ Examen DGT - Preguntas 1 a 10 (Luces)</h2>
+
+            <div class="question">
+
+                <h3>1. ¿Cuál es la función principal de las luces de posición?</h3>
+
+                <label class="option">
+                    <input type="radio" name="q1" value="a">
+                    Iluminar la carretera
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q1" value="b">
+                    Hacer visible el vehículo
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q1" value="c">
+                    Avisar de una avería
+                </label>
+
+            </div>
+
+            <div class="question">
+
+                <h3>2. Las luces de cruce deben utilizarse:</h3>
+
+                <label class="option">
+                    <input type="radio" name="q2" value="a">
+                    Solo en ciudad
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q2" value="b">
+                    Cuando la visibilidad sea insuficiente o de noche
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q2" value="c">
+                    Solo con lluvia
+                </label>
+
+            </div>
+
+            <div class="question">
+
+                <h3>3. Las luces de carretera también se conocen como:</h3>
+
+                <label class="option">
+                    <input type="radio" name="q3" value="a">
+                    Luces largas
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q3" value="b">
+                    Luces de emergencia
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q3" value="c">
+                    Luces de posición
+                </label>
+
+            </div>
+
+            <div class="question">
+
+                <h3>4. ¿Cuándo deben apagarse las luces largas?</h3>
+
+                <label class="option">
+                    <input type="radio" name="q4" value="a">
+                    Cuando puedan deslumbrar
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q4" value="b">
+                    Nunca
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q4" value="c">
+                    Solo en ciudad
+                </label>
+
+            </div>
+
+            <div class="question">
+
+                <h3>5. Las luces antiniebla delanteras:</h3>
+
+                <label class="option">
+                    <input type="radio" name="q5" value="a">
+                    Ayudan en condiciones de visibilidad reducida
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q5" value="b">
+                    Sustituyen todas las luces
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q5" value="c">
+                    Se usan únicamente en verano
+                </label>
+
+            </div>
+
+            <div class="question">
+
+                <h3>6. La luz antiniebla trasera:</h3>
+
+                <label class="option">
+                    <input type="radio" name="q6" value="a">
+                    Puede deslumbrar si se usa incorrectamente
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q6" value="b">
+                    No molesta a nadie
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q6" value="c">
+                    Debe ir siempre encendida
+                </label>
+
+            </div>
+
+            <div class="question">
+
+                <h3>7. ¿Qué debe hacer si se cruza con otro vehículo de frente por la noche?</h3>
+
+                <label class="option">
+                    <input type="radio" name="q7" value="a">
+                    Mantener las largas
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q7" value="b">
+                    Cambiar a luces de cruce
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q7" value="c">
+                    Apagar todas las luces
+                </label>
+
+            </div>
+
+            <div class="question">
+
+                <h3>8. Con niebla intensa es recomendable:</h3>
+
+                <label class="option">
+                    <input type="radio" name="q8" value="a">
+                    Usar el alumbrado adecuado
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q8" value="b">
+                    Circular sin luces
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q8" value="c">
+                    Usar solo largas
+                </label>
+
+            </div>
+
+            <div class="question">
+
+                <h3>9. Las luces largas iluminan:</h3>
+
+                <label class="option">
+                    <input type="radio" name="q9" value="a">
+                    Menos distancia
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q9" value="b">
+                    Más distancia
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q9" value="c">
+                    Lo mismo que las cortas
+                </label>
+
+            </div>
+
+            <div class="question">
+
+                <h3>10. ¿Qué objetivo tiene el sistema de alumbrado?</h3>
+
+                <label class="option">
+                    <input type="radio" name="q10" value="a">
+                    Ver y ser visto
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q10" value="b">
+                    Reducir consumo
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q10" value="c">
+                    Aumentar velocidad
+                </label>
+
+            </div>
+
+            <div class="question">
+
+                <h3>11. ¿Qué documento acredita que estás autorizado para conducir?</h3>
+
+                <label class="option">
+                    <input type="radio" name="q11" value="a">
+                    Permiso de conducir
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q11" value="b">
+                    Recibo del seguro
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q11" value="c">
+                    Ficha técnica
+                </label>
+
+                <small>
+                    Es el documento personal que habilita legalmente la conducción.
+                </small>
+
+            </div>
+
+            <div class="question">
+
+                <h3>12. El permiso de circulación identifica:</h3>
+
+                <label class="option">
+                    <input type="radio" name="q12" value="a">
+                    Al conductor
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q12" value="b">
+                    Al vehículo
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q12" value="c">
+                    A la aseguradora
+                </label>
+
+            </div>
+
+            <div class="question">
+
+                <h3>13. ¿Para qué sirve la ITV?</h3>
+
+                <label class="option">
+                    <input type="radio" name="q13" value="a">
+                    Comprobar el estado técnico del vehículo
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q13" value="b">
+                    Renovar el carnet
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q13" value="c">
+                    Contratar el seguro
+                </label>
+
+            </div>
+
+            <div class="question">
+
+                <h3>14. Circular sin seguro obligatorio:</h3>
+
+                <label class="option">
+                    <input type="radio" name="q14" value="a">
+                    Está permitido
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q14" value="b">
+                    Es ilegal
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q14" value="c">
+                    Depende de la edad del vehículo
+                </label>
+
+            </div>
+
+            <div class="question">
+
+                <h3>15. ¿Quién debe llevar un permiso de conducir válido?</h3>
+
+                <label class="option">
+                    <input type="radio" name="q15" value="a">
+                    Todo conductor
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q15" value="b">
+                    Solo profesionales
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q15" value="c">
+                    Solo motociclistas
+                </label>
+
+            </div>
+
+            <div class="question">
+
+                <h3>16. La ficha técnica contiene información sobre:</h3>
+
+                <label class="option">
+                    <input type="radio" name="q16" value="a">
+                    Características del vehículo
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q16" value="b">
+                    El domicilio del conductor
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q16" value="c">
+                    Los puntos del carnet
+                </label>
+
+            </div>
+
+            <div class="question">
+
+                <h3>17. Si la ITV está caducada:</h3>
+
+                <label class="option">
+                    <input type="radio" name="q17" value="a">
+                    Se puede circular normalmente
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q17" value="b">
+                    Se puede ser sancionado
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q17" value="c">
+                    No ocurre nada
+                </label>
+
+            </div>
+
+            <div class="question">
+
+                <h3>18. ¿El seguro obligatorio cubre la responsabilidad civil?</h3>
+
+                <label class="option">
+                    <input type="radio" name="q18" value="a">
+                    Sí
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q18" value="b">
+                    No
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q18" value="c">
+                    Solo parcialmente
+                </label>
+
+            </div>
+
+            <div class="question">
+
+                <h3>19. ¿Qué documento suele reflejar las inspecciones ITV realizadas?</h3>
+
+                <label class="option">
+                    <input type="radio" name="q19" value="a">
+                    La ficha técnica
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q19" value="b">
+                    El seguro
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q19" value="c">
+                    El DNI
+                </label>
+
+            </div>
+
+            <div class="question">
+
+                <h3>20. Antes de iniciar un viaje es recomendable:</h3>
+
+                <label class="option">
+                    <input type="radio" name="q20" value="a">
+                    Comprobar documentación y estado del vehículo
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q20" value="b">
+                    Solo mirar el combustible
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q20" value="c">
+                    Nada en especial
+                </label>
+
+                <small>
+                    La prevención evita averías, sanciones y problemas durante el viaje.
+                </small>
+
+            </div>
+
+            <div class="question">
+
+                <h3>21. ¿Por qué es importante comprobar la presión de los neumáticos?</h3>
+
+                <label class="option">
+                    <input type="radio" name="q21" value="a">
+                    Porque mejora la seguridad y el agarre
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q21" value="b">
+                    Solo por estética
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q21" value="c">
+                    No es importante
+                </label>
+
+            </div>
+
+            <div class="question">
+
+                <h3>22. La profundidad mínima legal del dibujo de los neumáticos es:</h3>
+
+                <label class="option">
+                    <input type="radio" name="q22" value="a">
+                    1,6 mm
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q22" value="b">
+                    0,5 mm
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q22" value="c">
+                    5 mm
+                </label>
+
+            </div>
+
+            <div class="question">
+
+                <h3>23. Un neumático desgastado puede provocar:</h3>
+
+                <label class="option">
+                    <input type="radio" name="q23" value="a">
+                    Pérdida de adherencia
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q23" value="b">
+                    Menor consumo
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q23" value="c">
+                    Mayor estabilidad
+                </label>
+
+            </div>
+
+            <div class="question">
+
+                <h3>24. ¿Para qué sirve el aceite del motor?</h3>
+
+                <label class="option">
+                    <input type="radio" name="q24" value="a">
+                    Lubricar las piezas móviles
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q24" value="b">
+                    Limpiar los cristales
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q24" value="c">
+                    Iluminar el cuadro
+                </label>
+
+            </div>
+
+            <div class="question">
+
+                <h3>25. Si se enciende la luz roja del aceite:</h3>
+
+                <label class="option">
+                    <input type="radio" name="q25" value="a">
+                    Puede existir una avería grave
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q25" value="b">
+                    Es normal
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q25" value="c">
+                    Debe acelerar
+                </label>
+
+            </div>
+
+            <div class="question">
+
+                <h3>26. El líquido refrigerante sirve para:</h3>
+
+                <label class="option">
+                    <input type="radio" name="q26" value="a">
+                    Evitar el sobrecalentamiento del motor
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q26" value="b">
+                    Aumentar la velocidad
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q26" value="c">
+                    Engrasar neumáticos
+                </label>
+
+            </div>
+
+            <div class="question">
+
+                <h3>27. Un fallo en los frenos:</h3>
+
+                <label class="option">
+                    <input type="radio" name="q27" value="a">
+                    No es importante
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q27" value="b">
+                    Puede comprometer seriamente la seguridad
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q27" value="c">
+                    Solo afecta al consumo
+                </label>
+
+            </div>
+
+            <div class="question">
+
+                <h3>28. Antes de un viaje largo se recomienda:</h3>
+
+                <label class="option">
+                    <input type="radio" name="q28" value="a">
+                    Revisar neumáticos, luces y niveles
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q28" value="b">
+                    Únicamente repostar
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q28" value="c">
+                    No revisar nada
+                </label>
+
+            </div>
+
+            <div class="question">
+
+                <h3>29. El mantenimiento preventivo permite:</h3>
+
+                <label class="option">
+                    <input type="radio" name="q29" value="a">
+                    Reducir averías y aumentar la seguridad
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q29" value="b">
+                    Gastar más combustible
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q29" value="c">
+                    Aumentar sanciones
+                </label>
+
+            </div>
+
+            <div class="question">
+
+                <h3>30. ¿Cuál es el objetivo principal de la mecánica básica para el conductor?</h3>
+
+                <label class="option">
+                    <input type="radio" name="q30" value="a">
+                    Conocer el estado del vehículo y circular con seguridad
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q30" value="b">
+                    Modificar el motor
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q30" value="c">
+                    Aumentar la potencia
+                </label>
+
+            </div>
+
+            <button type="button" onclick="corregir()">
+                ✅ Corregir Examen
+            </button>
+
+            <div id="resultado"></div>
+
+        </section>
+
+        <script>
+
+            function flip(card) {
+                card.classList.toggle("flip");
+            }
+
+            const respuestas = {
+
+                q1: "b",
+                q2: "b",
+                q3: "a",
+                q4: "a",
+                q5: "a",
+                q6: "a",
+                q7: "b",
+                q8: "a",
+                q9: "b",
+                q10: "a",
+
+                q11: "a",
+                q12: "b",
+                q13: "a",
+                q14: "b",
+                q15: "a",
+                q16: "a",
+                q17: "b",
+                q18: "a",
+                q19: "a",
+                q20: "a",
+
+                q21: "a",
+                q22: "a",
+                q23: "a",
+                q24: "a",
+                q25: "a",
+                q26: "a",
+                q27: "b",
+                q28: "a",
+                q29: "a",
+                q30: "a"
+
+            };
+
+            const explicaciones = {
+
+                q1: "Las luces de posición sirven para que el vehículo sea visible.",
+                q2: "Las luces de cruce deben utilizarse con baja visibilidad y durante la noche.",
+                q3: "Las luces de carretera también se denominan luces largas.",
+                q4: "Las luces largas deben sustituirse por cortas para evitar deslumbramientos.",
+                q5: "Las antiniebla delanteras mejoran la visibilidad en condiciones adversas.",
+                q6: "La antiniebla trasera puede deslumbrar y debe utilizarse con prudencia.",
+                q7: "Al cruzarse con otro vehículo se cambian las largas por luces de cruce.",
+                q8: "Con niebla debe utilizarse el alumbrado adecuado.",
+                q9: "Las luces largas iluminan a mayor distancia.",
+                q10: "El alumbrado permite ver y ser visto.",
+                q11: "El permiso de conducir acredita la autorización para conducir.",
+                q12: "El permiso de circulación identifica al vehículo.",
+                q13: "La ITV verifica que el vehículo reúne condiciones técnicas adecuadas.",
+                q14: "Circular sin seguro obligatorio es una infracción grave.",
+                q15: "Todo conductor debe disponer de permiso válido.",
+                q16: "La ficha técnica recoge las características técnicas del vehículo.",
+                q17: "Una ITV caducada puede dar lugar a sanciones.",
+                q18: "El seguro obligatorio cubre la responsabilidad civil.",
+                q19: "La ficha técnica registra las inspecciones realizadas.",
+                q20: "Es recomendable revisar documentación y estado general del vehículo.",
+                q21: "La presión correcta mejora agarre, estabilidad y seguridad.",
+                q22: "La profundidad mínima legal es 1,6 mm.",
+                q23: "Un neumático desgastado pierde adherencia especialmente con lluvia.",
+                q24: "El aceite reduce fricción y desgaste del motor.",
+                q25: "La luz roja de aceite puede indicar una avería importante.",
+                q26: "El refrigerante mantiene la temperatura adecuada del motor.",
+                q27: "Los frenos son un sistema esencial de seguridad.",
+                q28: "Toda revisión preventiva reduce riesgos durante el viaje.",
+                q29: "El mantenimiento ayuda a detectar problemas antes de que aparezcan averías.",
+                q30: "La mecánica básica permite detectar fallos y circular con mayor seguridad."
+
+            };
+
+            function corregir() {
+
+                let aciertos = 0;
+                let errores = "";
+
+                for (let i = 1; i <= 30; i++) {
+
+                    let respuesta =
+                        document.querySelector('input[name="q' + i + '"]:checked');
+
+                    if (respuesta) {
+
+                        if (respuesta.value === respuestas["q" + i]) {
+
+                            aciertos++;
+
+                        } else {
+
+                            errores +=
+                                "<p><strong>Pregunta " + i + ":</strong> "
+                                + explicaciones["q" + i] +
+                                "</p>";
+
+                        }
+
+                    } else {
+
+                        errores +=
+                            "<p><strong>Pregunta " + i + ":</strong> Sin responder. "
+                            + explicaciones["q" + i] +
+                            "</p>";
+
+                    }
+
+                }
+
+                let porcentaje = Math.round((aciertos / 30) * 100);
+                let xp = aciertos * 10;
+
+                let medalla = "🥉 Aprendiz de Mecánica";
+
+                if (aciertos >= 20) {
+                    medalla = "🥈 Conductor Responsable";
+                }
+
+                if (aciertos >= 27) {
+                    medalla = "🥇 Maestro de Mantenimiento";
+                }
+
+                const resultado =
+                    document.getElementById("resultado");
+
+                resultado.style.display = "block";
+
+                resultado.className =
+                    (aciertos >= 27)
+                        ? "correct"
+                        : "error";
+
+                resultado.innerHTML =
+
+                    "<h2>🏁 Resultado Final</h2>" +
+
+                    "<p><strong>Aciertos:</strong> "
+                    + aciertos +
+                    "/30</p>" +
+
+                    "<p><strong>Porcentaje:</strong> "
+                    + porcentaje +
+                    "%</p>" +
+
+                    "<p><strong>XP Ganada:</strong> "
+                    + xp +
+                    "</p>" +
+
+                    "<p><strong>Medalla:</strong> "
+                    + medalla +
+                    "</p><hr>" +
+
+                    "<h3>📚 Explicación de errores</h3>" +
+
+                    (errores ||
+                        "<p>🎉 ¡Examen perfecto! No has cometido errores.</p>");
+
+                localStorage.setItem("dia5_aciertos", aciertos);
+                localStorage.setItem("dia5_xp", xp);
+                localStorage.setItem("dia5_completado", "true");
+
+                document.getElementById("barra").style.width =
+                    porcentaje + "%";
+
+                document.getElementById("progresoTexto").innerText =
+                    porcentaje + "% completado";
+
+                window.scrollTo({
+                    top: document.body.scrollHeight,
+                    behavior: "smooth"
+                });
+
+            }
+
+        </script>
+
+</body>
+
+</html>

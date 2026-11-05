@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Día 3 - Velocidad y Adelantamientos | Curso Carnet B</title>
+
+    <style>
+        :root {
+            --bg: #0f172a;
+            --card: #1e293b;
+            --card2: #334155;
+            --text: #f8fafc;
+            --primary: #38bdf8;
+            --success: #22c55e;
+            --danger: #ef4444;
+            --warning: #fbbf24;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Segoe UI, sans-serif;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #cbd5e1;
+        }
+
+        .progress {
+            height: 25px;
+            background: #1e293b;
+            border-radius: 20px;
+            overflow: hidden;
+            margin-top: 20px;
+        }
+
+        .progress-bar {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #22c55e, #3b82f6);
+            transition: .5s;
+        }
+
+        .card {
+            background: var(--card);
+            padding: 25px;
+            border-radius: 20px;
+            margin-bottom: 25px;
+        }
+
+        .card h2 {
+            color: var(--warning);
+            margin-bottom: 15px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .rule {
+            background: var(--card2);
+            padding: 15px;
+            border-radius: 15px;
+        }
+
+        .rule h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .flashcards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .flashcard {
+            height: 180px;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+
+        .inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: .7s;
+            transform-style: preserve-3d;
+        }
+
+        .flashcard.flip .inner {
+            transform: rotateY(180deg);
+        }
+
+        .front,
+        .back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+            text-align: center;
+            border-radius: 15px;
+            backface-visibility: hidden;
+        }
+
+        .front {
+            background: #2563eb;
+        }
+
+        .back {
+            background: #16a34a;
+            transform: rotateY(180deg);
+        }
+
+        .question {
+            background: var(--card2);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+
+        .question h3 {
+            margin-bottom: 12px;
+        }
+
+        .option {
+            display: block;
+            background: #475569;
+            padding: 12px;
+            border-radius: 10px;
+            margin-top: 8px;
+            cursor: pointer;
+        }
+
+        .option:hover {
+            background: #64748b;
+        }
+
+        small {
+            display: block;
+            margin-top: 10px;
+            color: #cbd5e1;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <header>
+
+            <h1>🚗 CURSO CARNET B - DÍA 3</h1>
+
+            <p class="subtitle">
+                Velocidad · Distancias de Seguridad · Adelantamientos
+            </p>
+
+            <div class="progress">
+                <div class="progress-bar" id="barra"></div>
+            </div>
+
+            <p id="progresoTexto">0% completado</p>
+
+        </header>
+
+        <section class="card">
+
+            <h2>📚 Resumen Teórico</h2>
+
+            <div class="grid">
+
+                <div class="rule">
+                    <h3>🚗 Velocidad Adecuada</h3>
+                    <p>
+                        Aunque una velocidad sea legal, puede ser excesiva si las condiciones de tráfico, visibilidad o
+                        meteorología son desfavorables.
+                    </p>
+                </div>
+
+                <div class="rule">
+                    <h3>🛑 Distancia de Seguridad</h3>
+                    <p>
+                        Debe permitir detener el vehículo sin colisionar con el que circula delante.
+                    </p>
+                </div>
+
+                <div class="rule">
+                    <h3>⚡ Distancia de Reacción</h3>
+                    <p>
+                        Es la distancia recorrida desde que percibes el peligro hasta que comienzas a frenar.
+                    </p>
+                </div>
+
+                <div class="rule">
+                    <h3>🛞 Distancia de Frenado</h3>
+                    <p>
+                        Es la distancia que recorre el vehículo desde que se pisa el freno hasta detenerse
+                        completamente.
+                    </p>
+                </div>
+
+                <div class="rule">
+                    <h3>🚫 Adelantamiento Prohibido</h3>
+                    <p>
+                        Generalmente está prohibido en curvas, cambios de rasante, pasos de peatones y líneas continuas.
+                    </p>
+                </div>
+
+                <div class="rule">
+                    <h3>✅ Adelantamiento Seguro</h3>
+                    <p>
+                        Solo debe realizarse cuando exista visibilidad suficiente y no se genere peligro para otros
+                        usuarios.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+        <section class="card">
+
+            <h2>🧠 Flashcards</h2>
+
+            <div class="flashcards">
+
+                <div class="flashcard" onclick="flip(this)">
+                    <div class="inner">
+                        <div class="front">
+                            ¿Qué es la distancia de reacción?
+                        </div>
+                        <div class="back">
+                            Lo recorrido desde que ves el peligro hasta que reaccionas.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flashcard" onclick="flip(this)">
+                    <div class="inner">
+                        <div class="front">
+                            ¿Distancia de frenado?
+                        </div>
+                        <div class="back">
+                            Lo recorrido desde que frenas hasta detenerte.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flashcard" onclick="flip(this)">
+                    <div class="inner">
+                        <div class="front">
+                            ¿Se puede adelantar en línea continua?
+                        </div>
+                        <div class="back">
+                            Normalmente NO.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flashcard" onclick="flip(this)">
+                    <div class="inner">
+                        <div class="front">
+                            ¿La velocidad legal siempre es segura?
+                        </div>
+                        <div class="back">
+                            No. Debe adaptarse a las circunstancias.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+        <section class="card">
+
+            <h2>✅ Examen DGT - Preguntas 1 a 10</h2>
+
+            <div class="question">
+
+                <h3>1. ¿Qué ocurre con la distancia de frenado cuando aumenta la velocidad?</h3>
+
+                <label class="option">
+                    <input type="radio" name="q1" value="a">
+                    Disminuye
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q1" value="b">
+                    Aumenta
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q1" value="c">
+                    Permanece igual
+                </label>
+
+                <small>
+                    Pregunta muy frecuente de examen.
+                </small>
+
+            </div>
+
+            <div class="question">
+
+                <h3>2. La distancia de reacción depende principalmente de:</h3>
+
+                <label class="option">
+                    <input type="radio" name="q2" value="a">
+                    El tiempo que tarda el conductor en reaccionar
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q2" value="b">
+                    La presión de los neumáticos
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q2" value="c">
+                    El color del vehículo
+                </label>
+
+            </div>
+
+            <div class="question">
+
+                <h3>3. La distancia de detención es:</h3>
+
+                <label class="option">
+                    <input type="radio" name="q3" value="a">
+                    Distancia de reacción + distancia de frenado
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q3" value="b">
+                    Solo distancia de reacción
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q3" value="c">
+                    Solo distancia de frenado
+                </label>
+
+            </div>
+
+            <div class="question">
+
+                <h3>4. ¿Cuándo debe aumentarse la distancia de seguridad?</h3>
+
+                <label class="option">
+                    <input type="radio" name="q4" value="a">
+                    Con lluvia o mala visibilidad
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q4" value="b">
+                    Nunca
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q4" value="c">
+                    Solo de noche
+                </label>
+
+            </div>
+
+            <div class="question">
+
+                <h3>5. ¿Está permitido adelantar sobre una línea continua?</h3>
+
+                <label class="option">
+                    <input type="radio" name="q5" value="a">
+                    Sí, siempre
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q5" value="b">
+                    No, salvo excepciones muy concretas
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q5" value="c">
+                    Solo de noche
+                </label>
+
+            </div>
+
+            <div class="question">
+
+                <h3>6. ¿Qué debe comprobar antes de adelantar?</h3>
+
+                <label class="option">
+                    <input type="radio" name="q6" value="a">
+                    Que puede hacerlo sin peligro
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q6" value="b">
+                    Solo que haya combustible
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q6" value="c">
+                    Que el vehículo sea nuevo
+                </label>
+
+            </div>
+
+            <div class="question">
+
+                <h3>7. ¿Se puede adelantar en una curva con visibilidad reducida?</h3>
+
+                <label class="option">
+                    <input type="radio" name="q7" value="a">
+                    Sí
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q7" value="b">
+                    No
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q7" value="c">
+                    Solo motocicletas
+                </label>
+
+            </div>
+
+            <div class="question">
+
+                <h3>8. ¿Qué factor aumenta la distancia de reacción?</h3>
+
+                <label class="option">
+                    <input type="radio" name="q8" value="a">
+                    Alcohol o fatiga
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q8" value="b">
+                    Vehículo limpio
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q8" value="c">
+                    Lavar el coche
+                </label>
+
+            </div>
+
+            <div class="question">
+
+                <h3>9. La velocidad debe adaptarse:</h3>
+
+                <label class="option">
+                    <input type="radio" name="q9" value="a">
+                    Solo a las señales
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q9" value="b">
+                    A las circunstancias de la vía y tráfico
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q9" value="c">
+                    Solo al vehículo
+                </label>
+
+            </div>
+
+            <div class="question">
+
+                <h3>10. ¿Está permitido adelantar en un paso de peatones señalizado?</h3>
+
+                <label class="option">
+                    <input type="radio" name="q10" value="a">
+                    Sí
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q10" value="b">
+                    No, salvo casos excepcionales regulados
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q10" value="c">
+                    Siempre que no haya peatones
+                </label>
+
+            </div>
+
+            <div class="question">
+
+                <h3>11. ¿Qué sucede con la distancia de detención cuando aumenta la velocidad?</h3>
+
+                <label class="option">
+                    <input type="radio" name="q11" value="a">
+                    Disminuye
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q11" value="b">
+                    Aumenta considerablemente
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q11" value="c">
+                    No cambia
+                </label>
+
+                <small>
+                    Al aumentar la velocidad crecen tanto la distancia de reacción como la de frenado.
+                </small>
+
+            </div>
+
+            <div class="question">
+
+                <h3>12. ¿Cuál es la finalidad principal de la distancia de seguridad?</h3>
+
+                <label class="option">
+                    <input type="radio" name="q12" value="a">
+                    Ahorrar combustible
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q12" value="b">
+                    Evitar colisiones en caso de frenada
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q12" value="c">
+                    Circular más rápido
+                </label>
+
+            </div>
+
+            <div class="question">
+
+                <h3>13. ¿Está permitido adelantar en un cambio de rasante con visibilidad insuficiente?</h3>
+
+                <label class="option">
+                    <input type="radio" name="q13" value="a">
+                    Sí
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q13" value="b">
+                    No
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q13" value="c">
+                    Solo motocicletas
+                </label>
+
+            </div>
+
+            <div class="question">
+
+                <h3>14. La fatiga afecta principalmente a:</h3>
+
+                <label class="option">
+                    <input type="radio" name="q14" value="a">
+                    El tiempo de reacción
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q14" value="b">
+                    El color del vehículo
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q14" value="c">
+                    La cilindrada del motor
+                </label>
+
+            </div>
+
+            <div class="question">
+
+                <h3>15. Antes de iniciar un adelantamiento debes:</h3>
+
+                <label class="option">
+                    <input type="radio" name="q15" value="a">
+                    Señalizar la maniobra
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q15" value="b">
+                    Comprobar espejos y ángulo muerto
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q15" value="c">
+                    Todas las anteriores
+                </label>
+
+            </div>
+
+            <div class="question">
+
+                <h3>16. ¿Puede ser peligrosa una velocidad inferior al límite máximo?</h3>
+
+                <label class="option">
+                    <input type="radio" name="q16" value="a">
+                    Sí, si no se adapta al tráfico
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q16" value="b">
+                    Nunca
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q16" value="c">
+                    Solo en autopista
+                </label>
+
+            </div>
+
+            <div class="question">
+
+                <h3>17. ¿Qué efecto tiene la lluvia sobre la distancia de frenado?</h3>
+
+                <label class="option">
+                    <input type="radio" name="q17" value="a">
+                    La reduce
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q17" value="b">
+                    La aumenta
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q17" value="c">
+                    No la modifica
+                </label>
+
+            </div>
+
+            <div class="question">
+
+                <h3>18. ¿Dónde está normalmente prohibido adelantar?</h3>
+
+                <label class="option">
+                    <input type="radio" name="q18" value="a">
+                    En pasos de peatones señalizados
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q18" value="b">
+                    En rectas con buena visibilidad
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q18" value="c">
+                    En autovías
+                </label>
+
+            </div>
+
+            <div class="question">
+
+                <h3>19. La distancia de reacción aumenta cuando:</h3>
+
+                <label class="option">
+                    <input type="radio" name="q19" value="a">
+                    El conductor está distraído
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q19" value="b">
+                    El depósito está lleno
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q19" value="c">
+                    El coche es nuevo
+                </label>
+
+            </div>
+
+            <div class="question">
+
+                <h3>20. Para adelantar con seguridad es imprescindible:</h3>
+
+                <label class="option">
+                    <input type="radio" name="q20" value="a">
+                    Invadir el carril contrario sin mirar
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q20" value="b">
+                    Tener espacio y visibilidad suficientes
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q20" value="c">
+                    Circular a la misma velocidad
+                </label>
+
+                <small>
+                    Una de las claves del adelantamiento es poder completar toda la maniobra sin poner en riesgo a otros
+                    usuarios.
+                </small>
+
+            </div>
+
+            <div class="question">
+
+                <h3>21. ¿Qué debe hacerse después de adelantar?</h3>
+
+                <label class="option">
+                    <input type="radio" name="q21" value="a">
+                    Volver al carril derecho cuando sea seguro
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q21" value="b">
+                    Seguir circulando por el carril contrario
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q21" value="c">
+                    Detener el vehículo
+                </label>
+
+            </div>
+
+            <div class="question">
+
+                <h3>22. ¿Cuál de estos factores aumenta la distancia de frenado?</h3>
+
+                <label class="option">
+                    <input type="radio" name="q22" value="a">
+                    Pavimento mojado
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q22" value="b">
+                    Neumáticos en buen estado
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q22" value="c">
+                    Velocidad baja
+                </label>
+
+            </div>
+
+            <div class="question">
+
+                <h3>23. ¿Qué ocurre si se duplica la velocidad?</h3>
+
+                <label class="option">
+                    <input type="radio" name="q23" value="a">
+                    La distancia de frenado aumenta considerablemente
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q23" value="b">
+                    La distancia de frenado disminuye
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q23" value="c">
+                    Nada cambia
+                </label>
+
+            </div>
+
+            <div class="question">
+
+                <h3>24. ¿Está permitido adelantar en una intersección sin prioridad clara?</h3>
+
+                <label class="option">
+                    <input type="radio" name="q24" value="a">
+                    Sí, siempre
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q24" value="b">
+                    No, generalmente está prohibido
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q24" value="c">
+                    Solo motocicletas
+                </label>
+
+            </div>
+
+            <div class="question">
+
+                <h3>25. ¿Qué puede provocar una distancia de seguridad insuficiente?</h3>
+
+                <label class="option">
+                    <input type="radio" name="q25" value="a">
+                    Mayor comodidad
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q25" value="b">
+                    Alcance o colisión trasera
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q25" value="c">
+                    Menor consumo
+                </label>
+
+            </div>
+
+            <div class="question">
+
+                <h3>26. ¿Qué debe hacer si observa un adelantamiento peligroso de otro conductor?</h3>
+
+                <label class="option">
+                    <input type="radio" name="q26" value="a">
+                    Competir acelerando
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q26" value="b">
+                    Facilitar la maniobra si es seguro y reducir riesgos
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q26" value="c">
+                    Invadir el carril contrario
+                </label>
+
+            </div>
+
+            <div class="question">
+
+                <h3>27. ¿Cuál es la velocidad adecuada?</h3>
+
+                <label class="option">
+                    <input type="radio" name="q27" value="a">
+                    La máxima permitida en cualquier situación
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q27" value="b">
+                    La que permite controlar el vehículo según las circunstancias
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q27" value="c">
+                    La misma que el vehículo de delante
+                </label>
+
+            </div>
+
+            <div class="question">
+
+                <h3>28. ¿Qué influencia tiene el alcohol en la conducción?</h3>
+
+                <label class="option">
+                    <input type="radio" name="q28" value="a">
+                    Mejora los reflejos
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q28" value="b">
+                    Reduce la capacidad de reacción
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q28" value="c">
+                    No afecta
+                </label>
+
+            </div>
+
+            <div class="question">
+
+                <h3>29. ¿Cuál es la principal causa de aumento de la distancia de reacción?</h3>
+
+                <label class="option">
+                    <input type="radio" name="q29" value="a">
+                    Distracciones
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q29" value="b">
+                    Color del coche
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q29" value="c">
+                    Marca del vehículo
+                </label>
+
+            </div>
+
+            <div class="question">
+
+                <h3>30. ¿Qué debe prevalecer al decidir adelantar?</h3>
+
+                <label class="option">
+                    <input type="radio" name="q30" value="a">
+                    La prisa
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q30" value="b">
+                    La seguridad
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q30" value="c">
+                    La potencia del vehículo
+                </label>
+
+            </div>
+
+            <button type="button" onclick="corregir()">
+                ✅ Corregir Examen
+            </button>
+
+            <div id="resultado"></div>
+
+        </section>
+
+        <script>
+
+            function flip(card) {
+                card.classList.toggle("flip");
+            }
+
+            const respuestas = {
+
+                q1: "b",
+                q2: "a",
+                q3: "a",
+                q4: "a",
+                q5: "b",
+                q6: "a",
+                q7: "b",
+                q8: "a",
+                q9: "b",
+                q10: "b",
+
+                q11: "b",
+                q12: "b",
+                q13: "b",
+                q14: "a",
+                q15: "c",
+                q16: "a",
+                q17: "b",
+                q18: "a",
+                q19: "a",
+                q20: "b",
+
+                q21: "a",
+                q22: "a",
+                q23: "a",
+                q24: "b",
+                q25: "b",
+                q26: "b",
+                q27: "b",
+                q28: "b",
+                q29: "a",
+                q30: "b"
+
+            };
+
+            const explicaciones = {
+
+                q1: "A mayor velocidad, la distancia de frenado aumenta significativamente.",
+                q2: "La distancia de reacción depende del tiempo que tarda el conductor en reaccionar.",
+                q3: "La distancia de detención es la suma de reacción y frenado.",
+                q4: "Con lluvia o mala visibilidad debe aumentarse la distancia de seguridad.",
+                q5: "Normalmente no se puede adelantar sobre línea continua.",
+                q6: "Siempre debe comprobarse que la maniobra puede realizarse sin peligro.",
+                q7: "Las curvas con visibilidad reducida impiden adelantar con seguridad.",
+                q8: "Alcohol, drogas y fatiga aumentan el tiempo de reacción.",
+                q9: "La velocidad debe adaptarse a la vía, tráfico y climatología.",
+                q10: "Generalmente está prohibido adelantar en pasos de peatones señalizados.",
+                q11: "La distancia de detención crece al aumentar la velocidad.",
+                q12: "Su objetivo es evitar alcances y colisiones.",
+                q13: "Los cambios de rasante reducen la visibilidad y el adelantamiento suele estar prohibido.",
+                q14: "La fatiga reduce la atención y aumenta el tiempo de reacción.",
+                q15: "Antes de adelantar hay que observar, señalizar y comprobar el entorno.",
+                q16: "Una velocidad demasiado baja también puede generar peligro.",
+                q17: "La lluvia reduce la adherencia y aumenta la frenada.",
+                q18: "Los pasos de peatones son zonas especialmente protegidas.",
+                q19: "Las distracciones retrasan la reacción del conductor.",
+                q20: "La visibilidad suficiente es indispensable para adelantar.",
+                q21: "Tras adelantar debe volver al carril derecho cuando pueda hacerlo con seguridad.",
+                q22: "El agua disminuye la adherencia de los neumáticos.",
+                q23: "Al aumentar la velocidad crece mucho la distancia necesaria para detenerse.",
+                q24: "Las intersecciones son zonas de especial riesgo.",
+                q25: "La falta de distancia impide reaccionar ante una frenada repentina.",
+                q26: "La conducción defensiva ayuda a evitar accidentes.",
+                q27: "La velocidad adecuada es la que permite controlar el vehículo.",
+                q28: "El alcohol disminuye reflejos, percepción y capacidad de reacción.",
+                q29: "Las distracciones son una causa frecuente de accidentes.",
+                q30: "La seguridad siempre está por encima de llegar antes."
+            };
+
+            function corregir() {
+
+                let aciertos = 0;
+                let errores = "";
+
+                for (let i = 1; i <= 30; i++) {
+
+                    let respuesta =
+                        document.querySelector('input[name="q' + i + '"]:checked');
+
+                    if (respuesta) {
+
+                        if (respuesta.value === respuestas["q" + i]) {
+                            aciertos++;
+                        } else {
+                            errores +=
+                                "<p><strong>Pregunta " + i + ":</strong> "
+                                + explicaciones["q" + i] +
+                                "</p>";
+                        }
+
+                    } else {
+
+                        errores +=
+                            "<p><strong>Pregunta " + i + ":</strong> Sin responder. "
+                            + explicaciones["q" + i] +
+                            "</p>";
+
+                    }
+
+                }
+
+                let porcentaje = Math.round((aciertos / 30) * 100);
+                let xp = aciertos * 10;
+
+                let medalla = "🥉 Aprendiz";
+
+                if (aciertos >= 20) {
+                    medalla = "🥈 Experto en Circulación";
+                }
+
+                if (aciertos >= 27) {
+                    medalla = "🥇 Maestro de Velocidad y Adelantamientos";
+                }
+
+                let resultado =
+                    document.getElementById("resultado");
+
+                resultado.style.display = "block";
+
+                resultado.className =
+                    (aciertos >= 27)
+                        ? "correct"
+                        : "error";
+
+                resultado.innerHTML =
+
+                    "<h2>🏁 Resultado Final</h2>" +
+
+                    "<p><strong>Aciertos:</strong> "
+                    + aciertos + "/30</p>" +
+
+                    "<p><strong>Porcentaje:</strong> "
+                    + porcentaje + "%</p>" +
+
+                    "<p><strong>XP Ganada:</strong> "
+                    + xp + "</p>" +
+
+                    "<p><strong>Medalla:</strong> "
+                    + medalla + "</p>" +
+
+                    "<hr>" +
+
+                    "<h3>📚 Explicación de errores</h3>" +
+
+                    (errores || "<p>🎉 Examen perfecto. No has cometido errores.</p>");
+
+                localStorage.setItem("dia3_aciertos", aciertos);
+                localStorage.setItem("dia3_xp", xp);
+                localStorage.setItem("dia3_completado", "true");
+
+                document.getElementById("barra").style.width =
+                    porcentaje + "%";
+
+                document.getElementById("progresoTexto").innerText =
+                    porcentaje + "% completado";
+
+                window.scrollTo({
+                    top: document.body.scrollHeight,
+                    behavior: "smooth"
+                });
+
+            }
+
+        </script>
+
+</body>
+
+</html>
